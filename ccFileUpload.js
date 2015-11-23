@@ -72,7 +72,7 @@
                  */
                 for(var i=0; i<fileProps.files.length; i++){
                     /**
-                     * Get the file extension and check if is allowed.
+                     * Get the file extension and check if it is allowed.
                      * Do nothing if true.
                      */
                     __fileExtension = fileProps.files.item(i).name.split('.').pop().toLowerCase();
