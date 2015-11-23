@@ -8,7 +8,7 @@
  * IT IS A MUST TO DO A BACK-END (JAVA/PHP/etc) CHECKING FOR FILE TYPE RESTRICTIONS, TOO.
  * 
  * Tutorial Page: http://consistentcoder.com/create-a-file-uploader-using-jquery-and-bootstrap
- * GitHub Page: 
+ * GitHub Page: https://github.com/ConsistentCoder/ccFileUpload
  */
 (function($){
     /**
