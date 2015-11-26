@@ -118,6 +118,7 @@
                                                     })
                                                 )
                                             )
+                                .hide().removeClass('hidden').animate({opacity:"toggle", "top":"+10px"}, {duration:500, queue:false}).animate({"top":"-20px"}, 100).animate({"top":"+10px"}, 100)
                     );
                     
                      /**
