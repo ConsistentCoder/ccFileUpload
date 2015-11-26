@@ -102,7 +102,7 @@
                      * @param: Selected file properties (fileProps.files[i]).
                      * @param: Preview container element (prvwCntnr)
                      */
-                    _this.showPreview(fileProps.files[i], prvwCntnr);
+                    _this.showPreview(__fileName, fileProps.files[i], prvwCntnr);
                     
                      /**
                       * Construct the preview.
@@ -170,11 +170,11 @@
          * Function that will show a preview of a chosen file
          * if it's within the allowed previewed file list.
          */
-        showPreview: function(input, prvwCntnr){
+        showPreview: function(fileName, input, prvwCntnr){
             if ($.inArray(__fileExtension, __options.allowedPreviews) != -1){
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('<p/>').append($('<img/>').attr('src', e.target.result).addClass('thumbnail img-responsive center-block').css({'max-height':'200px','max-width':'200px'})).prependTo(prvwCntnr);
+                    $('<div/>').append($('<span/>').append(fileName)).append($('<img/>').attr('src', e.target.result).addClass('thumbnail img-responsive center-block').css({'max-height':'200px','max-width':'200px'})).prependTo(prvwCntnr);
                 };
                 reader.readAsDataURL(input);
             }
