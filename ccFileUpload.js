@@ -118,7 +118,6 @@
                                                     })
                                                 )
                                             )
-                            .append(_this.createInput({type:'file',name:__options.name,cssClass:'file hidden', multiple:true}))
                     );
                     
                      /**
