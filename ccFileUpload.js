@@ -144,7 +144,7 @@
             /**
              * Create the initial message.
              */
-            previewsId.html($('<div/>').addClass('text-center text-muted').append('<h1>No file chosen...</h1>'));
+            previewsId.html($('<div/>').addClass('text-center text-muted').append($('<span/>').addClass('glyphicon glyphicon-download').css({'font-size':'200px'}).prop('aria-hidden','true')));
 
             return _this;
         },
