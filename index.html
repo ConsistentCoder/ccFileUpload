@@ -5,7 +5,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
         <style type="text/css">
             body{ margin:50px 0px; }
-            .thumbnail{ padding:0px; margin-top:15px; margin-bottom:2px; }
+            .thumbnail{ padding:0px; }
+            .stageParent{ background:#fff; border:3px dashed #444; border-radius:5px; padding:10px; }
+            .stage{ min-height:220px; max-height:400px; overflow-y:auto; }
         </style>
 	</head>
 
@@ -22,11 +24,13 @@
             <div id="consistentCoder" class="text-center"></div>
         </div>
         <div class="col-xs-12">
-            <span class="label label-info pull-right"><span class="countMe">0</span> files ready to upload.</span>
-            <hr>
-            <div id="stage" style="max-height:400px; overflow-y:scroll"></div>
-            <hr>
+            <div class="label label-info pull-right"><span class="countMe">0</span> files ready to upload.</div>
         </div>
+        <div class="col-xs-12">&nbsp;</div>
+        <div class="col-xs-12 stageParent">
+            <div id="stage" class="stage"></div>
+        </div>
+        <div class="col-xs-12">&nbsp;</div>
         <div class="col-xs-12 text-center">
             <input type="submit" value="Upload" class="btn btn-primary">
         </div>
