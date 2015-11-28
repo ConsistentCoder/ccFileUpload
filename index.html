@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>ConsistentCoder File Upload (ccFileUpload)</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <head>
+        <title>ConsistentCoder File Upload (ccFileUpload)</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
         <style type="text/css">
             body{ margin:50px 0px; }
             .thumbnail{ padding:0px; }
             .stageParent{ background:#fff; border:3px dashed #444; border-radius:5px; padding:10px; }
             .stage{ min-height:220px; max-height:400px; overflow-y:auto; }
         </style>
-	</head>
+    </head>
 
-	<body>
+    <body>
     
     <div class="container">
         <div class="col-xs-12 text-center text-primary">
-            <h1>ccFileUpload</h1>
+            <h1>CC File Upload</h1>
         </div>
         <div class="col-xs-12">&nbsp;</div>
         <div class="col-xs-12">&nbsp;</div>
@@ -24,15 +24,11 @@
             <div id="consistentCoder" class="text-center"></div>
         </div>
         <div class="col-xs-12">
-            <div class="label label-info pull-right"><span class="countMe">0</span> files ready to upload.</div>
+            <div class="label label-info pull-right"><span class="countMe">0</span> files uploaded.</div>
         </div>
         <div class="col-xs-12">&nbsp;</div>
         <div class="col-xs-12 stageParent">
             <div id="stage" class="stage"></div>
-        </div>
-        <div class="col-xs-12">&nbsp;</div>
-        <div class="col-xs-12 text-center">
-            <input type="submit" value="Upload" class="btn btn-primary">
         </div>
         </form>
     </div>
@@ -139,13 +135,15 @@
     <script>
         $(document).ready(function(){
             var options = {
-                            'name':'myFile',
-                            'previews':'stage',
-                            'counter':'countMe',
-                            'columnClass':'col-md-4 text-center',
-                            'allowedFiles':['gif','png','jpg','jpeg','xlsx'],
-                            'allowedPreviews':['jpg','jpeg']
-                          };
+                    'name':'file',
+                    'uploadUrl':'upload',
+                    'sync':false,
+                    'previews':'stage',
+                    'counter':'countMe',
+                    'columnClass':'col-md-3 text-center',
+                    'allowedFiles':['gif','png','jpg','jpeg','xlsx','.psd'],
+                    'allowedPreviews':['jpg','jpeg']
+                  };
             $("#consistentCoder").ccFileUpload(options);
         });
     </script>
