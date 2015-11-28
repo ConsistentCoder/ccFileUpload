@@ -17,7 +17,7 @@
         <div class="col-xs-12 text-center text-primary">
             <h1>CC File Upload</h1>
         </div>
-        <div class="col-xs-12">&nbsp;</div>
+        <div id="response" class="text-center"></div>
         <div class="col-xs-12">&nbsp;</div>
         <form method="post" enctype="multipart/form-data" action="">
         <div class="col-xs-12">
@@ -139,6 +139,7 @@
                     'uploadUrl':'upload',
                     'sync':false,
                     'previews':'stage',
+                    'response':'response',
                     'counter':'countMe',
                     'columnClass':'col-md-3 text-center',
                     'allowedFiles':['gif','png','jpg','jpeg','xlsx','.psd'],
