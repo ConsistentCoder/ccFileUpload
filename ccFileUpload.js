@@ -30,6 +30,7 @@
                 uploadUrl: 'upload',
                 sync : true,
                 previews: 'previews',
+                response: 'response',
                 counter: 'counter',
                 columnClass: 'col-sm-3 text-center',
                 allowedFiles: ['gif','png','jpg','jpeg'],
@@ -57,9 +58,9 @@
              * and bind the upload function to it.
              */
             _this.append(file.bind('change',function(){
-            						_this.upload($(this).get(0).files, __options.sync);
-            					})
-            			);
+                                    _this.upload($(this).get(0).files, __options.sync);
+                                })
+                        );
             
             /**
              * Append the 'decoy' button with a function
@@ -108,7 +109,7 @@
                 $('#'+__options.previews).empty();
             }
             
-        	/**
+            /**
              * Create the preview container.
              */
             var prvwCntnr = $('<div/>').prop("id","prvwCntnr-"+i);
@@ -144,9 +145,9 @@
          * files to the server.
          */
         upload: function(files, sync){
-        	/**
-        	 * Do nothing if files is empty.
-        	 */
+            /**
+             * Do nothing if files is empty.
+             */
             if(!files.length){
                 return;
             }
@@ -162,7 +163,7 @@
              */
             for(var vf=0; vf<files.length; vf++){
                 if($.inArray(files[vf].name.split('.').pop().toLowerCase(), __options.allowedFiles) != -1){
-                	validFiles.push(files[vf]);
+                    validFiles.push(files[vf]);
                 }
                 /**
                  * What to do when the user
@@ -186,9 +187,9 @@
              */
             for(var i=0; i<validFiles.length; i++){
                 if(sync){ //all together
-                	/**
-                	 * Append each valid file to formData.
-                	 */
+                    /**
+                     * Append each valid file to formData.
+                     */
                     formData.append('file', validFiles[i]);
                     
                     /**
@@ -196,7 +197,7 @@
                      * @param: A validFiles object.
                      * @param: Auto generated id.
                      */
-                	$().showPreview(validFiles[i], (__counter+i));
+                    $().showPreview(validFiles[i], (__counter+i));
                 }
                 else{ //one by one
                     /**
@@ -207,9 +208,9 @@
             }
             
             if(!sync){ //one by one
-            	/**
-            	 * Append the first valid file to formData.
-            	 */
+                /**
+                 * Append the first valid file to formData.
+                 */
                 formData.append('file', tempFiles[0]);
                 
                 /**
@@ -227,13 +228,14 @@
                 enctype : 'multipart/form-data',
                 processData : false,
                 contentType : false,
-                success : function(result){
+                success : function(data){
                     if(sync){ //all together
                         $.each(files, function(key, file){
-                        	/**
-                        	 * Add a delete button.
-                        	 */
-                        	$().deleteButton($("#prvwCntnr-"+__counter));
+                            /**
+                             * Show server response,
+                             * and add a delete button.
+                             */
+                            $().showResponse($("#prvwCntnr-"+__counter), data.response[key]);
                             
                             /**
                              * Increment file counter.
@@ -242,10 +244,11 @@
                         });
                     }
                     else{ //one by one
-                    	/**
-                    	 * Add a delete button.
-                    	 */
-                        $().deleteButton($("#prvwCntnr-"+__counter));
+                        /**
+                         * Show server response,
+                         * and add a delete button.
+                         */
+                        $().showResponse($("#prvwCntnr-"+__counter), data.response[0]);
                         
                         /**
                          * Increment file counter.
@@ -254,11 +257,11 @@
                     }
                 }
             }).always(function(){
-            	/**
-            	 * Remove the file that has
-            	 * just been uploaded.
-            	 * Used when sync = false
-            	 */
+                /**
+                 * Remove the file that has
+                 * just been uploaded.
+                 * Used when sync = false
+                 */
                 tempFiles.shift();
                 
                 /**
@@ -280,13 +283,18 @@
         },
         
         /**
-         * Function that will create a delete button.
+         * Function that will show server response
+         * and will create a delete button.
          * @param div
          * div='The div where the button will be added'.
+         * @param response
+         * response='A JSON form response message
+         * from the server.'
          */
-        deleteButton: function(div){
+        showResponse: function(div, response){
             div.children().last().find('.progress-bar').css({'width':'100%'});
             div.children().last().animate({"opacity":"toggle"}, 1000, function(){
+                $("#" + __options.response).prepend($('<p/>').append(response));
                 div.append($('<p/>')
                         .append($().createInput({type:'button', name:'button', cssClass:'btn btn-xs btn-danger hidden', text:'Delete'})
                             .bind('click', function(){
