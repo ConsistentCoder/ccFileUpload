@@ -26,14 +26,67 @@
              * Default settings.
              */
             var defaults = {
+                /**
+                 * The input name, ex. name="file".
+                 */
                 name: 'file',
+                
+                /**
+                 * The link where the upload will be sent,
+                 * same with action="uploadUrl".
+                 */
                 uploadUrl: 'upload',
+                
+                /**
+                 * Whether a synchronous(all at the same time)
+                 * or not synchronous(one by one)
+                 * upload will be performed.
+                 */
                 sync : true,
+                
+                /**
+                 * The id of the element(div)
+                 * where the previews/upload details will appear.
+                 */
                 previews: 'previews',
+                
+                /**
+                 * The id of the element(div) where
+                 * the server response will be printed.
+                 * 
+                 * Sample expected server response.
+                 * {
+                 *      "response":
+                 *      [
+                 *          "You have successfully uploaded image no. 1!",
+                 *          "You have successfully uploaded image no. 2!"
+                 *      ]
+                 * }
+                 */
                 response: 'response',
+                
+                /**
+                 * The id of the element where the
+                 * total number of uploads will be displayed.
+                 */
                 counter: 'counter',
+                
+                /**
+                 * The classes the will be added
+                 * to the preview instance.
+                 */
                 columnClass: 'col-sm-3 text-center',
+                
+                /**
+                 * The list of file extensions
+                 * of the allowed files.
+                 */
                 allowedFiles: ['gif','png','jpg','jpeg'],
+                
+                /**
+                 * The list of the files that
+                 * will generate previews.
+                 */
                 allowedPreviews: ['gif','png','jpg','jpeg']
             };
             
