@@ -243,7 +243,7 @@
                     /**
                      * Append each valid file to formData.
                      */
-                    formData.append('file', validFiles[i]);
+                    formData.append(__options.name, validFiles[i]);
                     
                     /**
                      * Call the 'showPreview' function.
@@ -264,7 +264,7 @@
                 /**
                  * Append the first valid file to formData.
                  */
-                formData.append('file', tempFiles[0]);
+                formData.append(__options.name, tempFiles[0]);
                 
                 /**
                  * Call the 'showPreview' function.
