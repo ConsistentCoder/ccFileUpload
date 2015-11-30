@@ -212,16 +212,16 @@
             
             /**
              * Get the file extension and check if it is allowed.
-             * Add to validFiles list if true.
+             * Add to validFiles list if true,
+             * else display an error message.
              */
             for(var vf=0; vf<files.length; vf++){
                 if($.inArray(files[vf].name.split('.').pop().toLowerCase(), __options.allowedFiles) != -1){
                     validFiles.push(files[vf]);
                 }
-                /**
-                 * What to do when the user
-                 * uploads an invalid file, nothing???
-                 */
+                else{
+                    $("#" + __options.response).prepend($('<p/>').addClass('text-danger').append("Error! " + files[vf].name + " is not allowed to be uploaded."));
+                }
             }
             
             /**
