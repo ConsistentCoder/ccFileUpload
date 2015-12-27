@@ -196,7 +196,7 @@
             
             $('#'+__options.previews).prepend(
                     prvwCntnr.addClass(__options.columnClass)
-                        .append($('<div/>').addClass('progress').append($('<div/>').addClass('progress-bar').css({'width':'0%'}).attr('role', 'progressbar')))
+                        .append($('<div/>').addClass('progress').append($('<div/>').addClass('progress-bar progress-bar-striped active').css({'width':'50%'}).attr('role', 'progressbar')))
                         .hide().removeClass('hidden').animate({opacity:"toggle", "top":"+10px"}, {duration:500, queue:false}).animate({"top":"-20"}, 100).animate({"top":"+10px"}, 100)
                    );
         },
