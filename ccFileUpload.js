@@ -87,8 +87,24 @@
                  * The list of the files that
                  * will generate previews.
                  */
-                allowedPreviews: ['gif','png','jpg','jpeg']
+                allowedPreviews: ['gif','png','jpg','jpeg'],
+                
+                /**
+                 * Set up animation speed options.
+                 * Possible user input values
+                 * slow | normal | fast
+                 * where normal is the default.
+                 */
+                setAnimSpeed: {'slow':'ccAnimateSlow', 'normal':'ccAnimate', 'fast':'ccAnimateFast'},
             };
+            
+            /**
+             * Set the default speed to normal
+             * if the user given is not on the option list.
+             */
+            if(defaults.setAnimSpeed[options.animSpeed] == undefined){
+                options.animSpeed = 'normal';
+            }
             
             /**
              * Overwrite default settings
@@ -337,7 +353,7 @@
         
         /**
          * Function that will show server response
-         * and will create a delete button.
+         * and will create a 'delete' button.
          * @param div
          * div='The div where the button will be added'.
          * @param response
@@ -345,20 +361,28 @@
          * from the server.'
          */
         showResponse: function(div, response){
+            var deleteButton = $().createInput({type:'button', name:'button', cssClass:'btn btn-xs btn-danger ' + __options.setAnimSpeed[__options.animSpeed] + ' rotateHalf_setUp', text:'Delete'})
+                                .bind('click', function(){
+                                        $(this).parent().parent().fadeOut(200, function(){
+                                            $(this).remove(); __counter--; $().updateCounter();
+                                        });
+                                     }).hide();
+            
             div.children().last().find('.progress-bar').css({'width':'100%'});
             div.children().last().animate({"opacity":"toggle"}, 1000, function(){
                 $("#" + __options.response).prepend($('<p/>').append(response));
-                div.append($('<p/>')
-                        .append($().createInput({type:'button', name:'button', cssClass:'btn btn-xs btn-danger hidden', text:'Delete'})
-                            .bind('click', function(){
-                                     $(this).parent().parent().fadeOut(200, function(){
-                                         $(this).remove(); __counter--; $().updateCounter();
-                                     });
-                                 })
-                            .hide().removeClass('hidden').animate({opacity:"toggle", "margin-top":"+20px"}, {duration:50, queue:false}).animate({"margin-top":"-20px"}, 50).animate({"margin-top":"0px"}, 50)
-                         )
-                    ).append($('<p/>').append('&nbsp;'));
+                div.append($('<p/>').append(deleteButton)).append($('<p/>').append('&nbsp;'));
+                $().addEffect(deleteButton.fadeIn());
             });
+        },
+        
+        /**
+         * Function that will perform the
+         * added animation.
+         */
+        addEffect: function(elem){
+            elem.offset();
+            return elem.addClass('rotateHalf');
         }
     });
 }(jQuery));
